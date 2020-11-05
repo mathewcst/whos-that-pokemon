@@ -14,7 +14,8 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@config/*": ["./src/config/*"]
+      "@config/*": ["./src/config/*"],
+      "@models/*": ["./src/models/*"]
     }
   },
   "include": ["src/**/*"]
