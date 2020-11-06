@@ -8,12 +8,18 @@ app.get('/', (request, response) => {
   return response.json({ message: 'Hello World!' })
 })
 
-app.get('/:id', async (request, response) => {
+app.get('/pokemon/:id', async (request, response) => {
   const number = request.params.id
 
-  const pokemon = await db.PokemonModel.findOneByNumber(number)
+  if (parseInt(number) > 893) {
+    response.send({ message: "Pokemon doesn't exist" })
+  } else {
+    const pokemon = await db.PokemonModel.findOneByNumber(number)
 
-  response.json(pokemon)
+    response.json(pokemon)
+  }
 })
 
-app.listen(3333)
+const port = process.env.PORT || 3333
+
+app.listen(port)

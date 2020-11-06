@@ -18,31 +18,43 @@ export async function findOneByNumber(
     return this.create({
       name,
       number: id,
-      generation: getGeneration(id),
+      generation: __getGeneration(id),
       image: `https://pokeres.bastionbot.org/images/pokemon/${id}.png`,
     })
   }
 }
 
-function getGeneration(number: number): string {
+function __getGeneration(number: number): string {
   let generation: string
 
-  if (number <= 151) {
-    generation = '1'
-  } else if (number > 151 && number <= 251) {
-    generation = '2'
-  } else if (number > 251 && number <= 386) {
-    generation = '3'
-  } else if (number > 386 && number <= 493) {
-    generation = '4'
-  } else if (number > 493 && number <= 649) {
-    generation = '5'
-  } else if (number > 649 && number <= 721) {
-    generation = '6'
-  } else if (number > 721 && number <= 809) {
-    generation = '7'
-  } else if (number > 809 && number <= 898) {
-    generation = '8'
+  switch (true) {
+    case number <= 151:
+      generation = '1'
+      break
+    case number > 151 && number <= 251:
+      generation = '2'
+      break
+    case number > 251 && number <= 386:
+      generation = '3'
+      break
+    case number > 386 && number <= 493:
+      generation = '4'
+      break
+    case number > 493 && number <= 649:
+      generation = '5'
+      break
+    case number > 649 && number <= 721:
+      generation = '6'
+      break
+    case number > 721 && number <= 809:
+      generation = '7'
+      break
+    case number > 809 && number <= 893:
+      generation = '8'
+      break
+    default:
+      generation = '1'
+      break
   }
 
   return generation
