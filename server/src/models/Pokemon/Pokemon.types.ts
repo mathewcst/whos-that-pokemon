@@ -12,13 +12,5 @@ export interface IPokeDoc extends IPokemon, Document {
   sameNumber: (this: IPokeDoc) => Promise<Document[]>
 }
 export interface IPokeModel extends Model<IPokeDoc> {
-  findOneByNumber: (
-    this: IPokeModel,
-    {
-      number,
-      name,
-      generation,
-      image,
-    }: { number: string; name: string; generation: string; image: string }
-  ) => Promise<IPokeDoc>
+  findOneByNumber: (this: IPokeModel, number: string) => Promise<IPokeDoc>
 }

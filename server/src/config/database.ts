@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import Mongoose from 'mongoose'
 import * as dotenv from 'dotenv'
+import { PokemonModel } from '@models/Pokemon/Pokemon.model'
 dotenv.config()
 
 const mongoUser = process.env.MONGO_USER
@@ -9,7 +11,7 @@ const mongoURL = `mongodb+srv://${mongoUser}:${mongoPass}@streda.jyppm.mongodb.n
 
 let database: Mongoose.Connection
 
-export const connect = (): void => {
+export const connect = () => {
   if (database) return
 
   Mongoose.connect(mongoURL, {
@@ -28,6 +30,10 @@ export const connect = (): void => {
   database.on('error', () => {
     console.log('Error connecting to mongo')
   })
+
+  return {
+    PokemonModel,
+  }
 }
 
 export const disconnect = (): void => {
